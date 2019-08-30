@@ -57,10 +57,6 @@ function setupGraph(strx,stry,maxx,maxy){
 	}
 	let pmillis = 0;
 	for(r=0;r<table.getRowCount();r++){
-		//print(table.get(r,0));//name
-		//print(table.get(r,1));//mass
-		//print(table.get(r,2));//heart rate
-		//print(table.get(r,3));//longetivity
 		let name = table.get(r,0);
 		let hr = table.get(r,2);	//	bpm
 		let l = table.get(r,3);		//	years
@@ -69,7 +65,6 @@ function setupGraph(strx,stry,maxx,maxy){
 		let pl = map(l,0,maxy,0,maxpy);
 		let d = sqrt(sqrt(m));
 		noStroke();
-		//print(name,floor(millis())-pmillis,(60000/hr),millis()%(60000/hr));
 		if(millis()%(60000/hr)<(60000/hr)){
 			push();
 			let alpha = map(millis()%(60000/hr),0,(60000/hr),200,40);
@@ -92,12 +87,5 @@ function setupGraph(strx,stry,maxx,maxy){
 }
 function draw(){
 	background(51);
-	push();
-	translate(100,500);
-	textSize(20);
-	textAlign(LEFT);
-	fill(200);
-	pop();
 	setupGraph('Heart rate (bpm)','Longetivity (years)',450,80);
-	
 }

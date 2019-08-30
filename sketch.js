@@ -3,7 +3,6 @@ function preload(){
 	table = loadTable('https://raw.githubusercontent.com/zonination/datasets/master/file.csv','csv','header');
 }
 function setup(){
-	//print(table.get(1,0));
 	createCanvas(800,700);
 }
 function setupGraph(strx,stry,maxx,maxy){
@@ -26,7 +25,6 @@ function setupGraph(strx,stry,maxx,maxy){
 	push();
 	noStroke();
 	text(strx,600+40,0);
-
 	pop();
 	// y arrow
 	line(0,-400,-7,-400+15);
@@ -35,6 +33,7 @@ function setupGraph(strx,stry,maxx,maxy){
 	noStroke();
 	text(stry,0,-400-15);
 	pop();
+
 	let maxpx = 560;
 	for(let x=0;x<=maxx;x+=20){
 		let px = map(x,0,maxx,0,maxpx);
@@ -45,6 +44,7 @@ function setupGraph(strx,stry,maxx,maxy){
 		text(x,px,15);
 		pop();
 	}
+
 	let maxpy = -360;
 	for(let y=0;y<=maxy;y+=10){
 		let py = map(y,0,maxy,0,maxpy);
@@ -68,11 +68,14 @@ function setupGraph(strx,stry,maxx,maxy){
 		let phr = map(hr,0,maxx,0,maxpx);
 		let pl = map(l,0,maxy,0,maxpy);
 		let d = sqrt(sqrt(m));
-		fill(255,0,255,130);
 		noStroke();
 		//print(name,floor(millis())-pmillis,(60000/hr),millis()%(60000/hr));
-		if(millis()%(60000/hr)<(60000/hr)*0.8){
+		if(millis()%(60000/hr)<(60000/hr)){
+			push();
+			let alpha = map(millis()%(60000/hr),0,(60000/hr),200,40);
+			fill(255,0,255,alpha);
 			ellipse(phr,pl,d,d);
+			pop();
 		}
 		pmillis = floor(millis());
 		
@@ -94,7 +97,6 @@ function draw(){
 	textSize(20);
 	textAlign(LEFT);
 	fill(200);
-	//text('Effect of heart rates on some mamals\' longetivity',0,-250);
 	pop();
 	setupGraph('Heart rate (bpm)','Longetivity (years)',450,80);
 	
